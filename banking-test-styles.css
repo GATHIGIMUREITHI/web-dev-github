@@ -175,6 +175,11 @@ header h1 {
     transform: translateX(5px);
 }
 
+.option:focus {
+    outline: 3px solid #667eea;
+    outline-offset: 2px;
+}
+
 .option.selected {
     border-color: #667eea;
     background: #e8ebff;

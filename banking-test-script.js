@@ -162,6 +162,7 @@ let timerInterval;
 function startTest() {
     document.getElementById('welcome-screen').classList.remove('active');
     document.getElementById('test-screen').classList.add('active');
+    document.getElementById('timer').style.display = 'inline-block';
     displayQuestion();
     startTimer();
 }
@@ -179,6 +180,13 @@ function displayQuestion() {
         optionDiv.className = 'option';
         optionDiv.textContent = option;
         optionDiv.onclick = () => selectOption(index);
+        optionDiv.tabIndex = 0;
+        optionDiv.onkeydown = (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                selectOption(index);
+            }
+        };
         
         if (userAnswers[currentQuestionIndex] === index) {
             optionDiv.classList.add('selected');
@@ -266,6 +274,10 @@ function startTimer() {
 
 // Submit test
 function submitTest() {
+    if (!confirm('Are you sure you want to submit the test? You will not be able to change your answers.')) {
+        return;
+    }
+    
     clearInterval(timerInterval);
     
     let score = 0;
@@ -331,12 +343,15 @@ function displayResults(score) {
 
 // Retake test
 function retakeTest() {
+    clearInterval(timerInterval);
     currentQuestionIndex = 0;
     userAnswers = new Array(quizData.length).fill(null);
     timeRemaining = 900;
     
     document.getElementById('result-screen').classList.remove('active');
     document.getElementById('welcome-screen').classList.add('active');
+    document.getElementById('timer').style.display = 'none';
+    document.getElementById('time').textContent = '15:00';
 }
 
 // Initialize on page load
