@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Banking Aptitude Test</title>
+    <link rel="stylesheet" href="banking-test-styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Digital Banking Aptitude Test</h1>
+            <div class="timer" id="timer" style="display: none;">Time Remaining: <span id="time">15:00</span></div>
+        </header>
+
+        <div id="welcome-screen" class="screen active">
+            <div class="welcome-content">
+                <h2>Welcome to the Digital Banking Aptitude Test</h2>
+                <p>This test will assess your knowledge in the following areas:</p>
+                <ul>
+                    <li>Banking Fundamentals</li>
+                    <li>Digital Banking Technologies</li>
+                    <li>Financial Calculations</li>
+                    <li>Security and Compliance</li>
+                    <li>Customer Service</li>
+                </ul>
+                <p><strong>Instructions:</strong></p>
+                <ul>
+                    <li>Total Questions: 15</li>
+                    <li>Time Limit: 15 minutes</li>
+                    <li>Each question carries 1 point</li>
+                    <li>Select the best answer for each question</li>
+                </ul>
+                <button onclick="startTest()" class="btn-primary">Start Test</button>
+            </div>
+        </div>
+
+        <div id="test-screen" class="screen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+            <div class="question-counter">
+                Question <span id="current-question">1</span> of <span id="total-questions">15</span>
+            </div>
+            <div class="question-container">
+                <h3 id="question-text"></h3>
+                <div id="options-container" class="options"></div>
+            </div>
+            <div class="navigation-buttons">
+                <button onclick="previousQuestion()" id="prev-btn" class="btn-secondary" disabled>Previous</button>
+                <button onclick="nextQuestion()" id="next-btn" class="btn-primary">Next</button>
+                <button onclick="submitTest()" id="submit-btn" class="btn-primary" style="display:none;">Submit Test</button>
+            </div>
+        </div>
+
+        <div id="result-screen" class="screen">
+            <div class="result-content">
+                <h2>Test Complete!</h2>
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span id="score-percentage">0%</span>
+                    </div>
+                    <p class="score-text">You scored <span id="score-value">0</span> out of <span id="total-score">15</span></p>
+                </div>
+                <div id="performance-message" class="performance-message"></div>
+                <div class="result-details">
+                    <h3>Answer Summary</h3>
+                    <div id="answer-summary"></div>
+                </div>
+                <button onclick="retakeTest()" class="btn-primary">Retake Test</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="banking-test-script.js"></script>
+</body>
+</html>
